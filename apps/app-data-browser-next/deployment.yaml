@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: app-data-browser-next
-    section: internal
+    section: frontend
   name: app-data-browser-next
 spec:
   replicas: 1

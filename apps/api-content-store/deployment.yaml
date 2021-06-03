@@ -3,7 +3,8 @@ kind: Deployment
 metadata:
   labels:
     app: api-content-store
-    require-mounts: enabled
+    section: backend
+    require-data-mounts: enabled
     require-pydtk-v3: enabled
   name: api-content-store
 spec:
