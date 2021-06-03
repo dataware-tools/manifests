@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: api-file-provider
+    section: internal
+    require-data-mounts: enabled
+  name: api-file-provider
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-file-provider
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: api-file-provider
+        version: v1
+        require-auth0: enabled
+    spec:
+      containers:
+      - image: registry.gitlab.com/dataware-tools/api-file-provider:v1.0
+        name: app
+        ports:
+          - containerPort: 8080
+        env:
+          - name: PORT
+            value: "8080"
+          - name: SECRET_KEY
+            value: "api-file-provider"
+          - name: JWT_LIFETIME    # Lifetime of token in seconds
+            value: '60'
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          failureThreshold: 3
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-file-provider
+spec:
+  selector:
+    app: api-file-provider
+  ports:
+  - name: http
+    protocol: TCP
+    port: 8080
+    targetPort: 8080

@@ -1,0 +1,28 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: dataware-tools-api-file-provider
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - dataware-tools-gateway
+  http:
+    - name: api-file-provider-public
+      match:
+        - uri:
+            prefix: /api/latest/file_provider/download/
+      rewrite:
+        uri: /download/
+      route:
+        - destination:
+            host: api-file-provider-public
+    - name: api-file-provider
+      match:
+        - uri:
+            prefix: /api/latest/file_provider/
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: api-file-provider

@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: dataware-tools-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: dataware-tools-gateway-http
+        protocol: HTTP
+      hosts:
+        - "*"
+    - port:
+        number: 443
+        name: dataware-tools-gateway-https
+        protocol: HTTPS
+      tls:
+        mode: SIMPLE
+        serverCertificate: /etc/istio/ingressgateway-certs/tls.crt
+        privateKey: /etc/istio/ingressgateway-certs/tls.key
+      hosts:
+        - "*"

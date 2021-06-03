@@ -1,0 +1,55 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-read-all
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      require-auth0: enabled
+  rules:
+    - to:
+        - operation:
+            methods: ["GET"]
+#      when:
+#        - key: request.auth.audiences
+#          values:
+#            - https://demo.dataware-tools.com/
+#        - key: request.auth.claims[permissions]
+#          values:
+#            - "read:all"
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-write-all
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      require-auth0: enabled
+  rules:
+    - to:
+        - operation:
+            methods: ["POST", "PUT", "PATCH", "DELETE"]
+#      when:
+#        - key: request.auth.audiences
+#          values:
+#            - https://demo.dataware-tools.com/
+#        - key: request.auth.claims[permissions]
+#          values:
+#            - "write:all"
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-all-without-require-auth0
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      require-auth0: disabled
+  rules:
+    - to:
+        - operation:
+            paths: ["*"]

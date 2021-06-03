@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: webviz
+  name: webviz
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webviz
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: webviz
+    spec:
+      containers:
+      - image: hdwlab/webviz:hdl-master
+        name: app
+        ports:
+          - containerPort: 8080
+        imagePullPolicy: Always
+        args:
+          - npx
+          - webpack-dev-server
+          - --disable-host-check
+          - --port 8080
+          - --host 0.0.0.0
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webviz
+spec:
+  selector:
+    app: webviz
+  ports:
+  - name: http
+    protocol: TCP
+    port: 8080
+    targetPort: 8080

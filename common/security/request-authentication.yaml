@@ -1,0 +1,15 @@
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: require-auth0-jwt
+spec:
+  selector:
+    matchLabels:
+      require-auth0: enabled
+  jwtRules:
+    - issuer: https://dataware-tools.us.auth0.com/
+      jwksUri: https://dataware-tools.us.auth0.com/.well-known/jwks.json
+      audiences:
+        - https://demo.dataware-tools.com/
+      forwardOriginalToken: true
+      outputPayloadToHeader: jwt-payload

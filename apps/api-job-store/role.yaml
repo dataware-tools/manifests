@@ -1,0 +1,20 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: api-job-store-role
+rules:
+- apiGroups: ["", "batch", "networking.istio.io"]
+  resources: ["jobs", "pods", "services", "virtualservices", "configmaps"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: api-job-store-role-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: api-job-store-role
+subjects:
+- kind: ServiceAccount
+  name: default

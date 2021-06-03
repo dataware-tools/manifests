@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: dataware-tools-cert
+spec:
+  secretName: dataware-tools-cert
+  commonName: demo.dataware-tools.com
+  issuerRef:
+    name: dataware-tools-self-signing-issuer
+  dnsNames:
+    - demo.dataware-tools.com
