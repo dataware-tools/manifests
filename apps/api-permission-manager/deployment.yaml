@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     app: api-permission-manager
-    section: backend
     require-auth0-client-secret: enabled
   name: api-permission-manager
 spec:

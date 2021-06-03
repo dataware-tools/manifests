@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     app: app-user-manager
-    section: frontend
   name: app-user-manager
 spec:
   replicas: 1

@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     app: api-meta-store
-    section: backend
     require-pydtk-v4: enabled
   name: api-meta-store
 spec:

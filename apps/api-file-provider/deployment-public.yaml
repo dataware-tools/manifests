@@ -6,7 +6,6 @@ kind: Deployment
 metadata:
   labels:
     app: api-file-provider-public
-    section: backend
     require-data-mounts: enabled
   name: api-file-provider-public
 spec:

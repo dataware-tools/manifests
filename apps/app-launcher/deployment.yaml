@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     app: app-launcher
-    section: frontend
   name: app-launcher
 spec:
   replicas: 1

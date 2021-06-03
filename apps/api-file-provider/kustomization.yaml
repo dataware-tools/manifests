@@ -4,3 +4,6 @@ resources:
   - ./deployment.yaml
   - ./deployment-public.yaml
   - ./virtual-services.yaml
+
+commonLabels:
+  section: backend

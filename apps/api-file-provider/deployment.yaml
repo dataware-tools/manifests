@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     app: api-file-provider
-    section: backend
     require-data-mounts: enabled
   name: api-file-provider
 spec:

@@ -3,3 +3,6 @@ kind: Kustomization
 resources:
   - ./deployment.yaml
   - ./role.yaml
+
+commonLabels:
+  section: backend

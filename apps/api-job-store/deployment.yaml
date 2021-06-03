@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     app: api-job-store
-    section: backend
     require-db-url: enabled
   name: api-job-store
 spec:
