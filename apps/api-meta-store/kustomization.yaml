@@ -5,3 +5,4 @@ resources:
 
 commonLabels:
   section: backend
+  num-virtual-services: "1"
