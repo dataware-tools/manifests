@@ -20,7 +20,7 @@ spec:
         require-auth0: enabled
     spec:
       containers:
-      - image: registry.gitlab.com/dataware-tools/api-meta-store:v0.2.0
+      - image: registry.gitlab.com/dataware-tools/api-meta-store:v0.2.1
         name: app
         ports:
           - containerPort: 8080
