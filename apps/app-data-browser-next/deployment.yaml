@@ -17,7 +17,7 @@ spec:
         require-auth0: disabled
     spec:
       containers:
-      - image: registry.gitlab.com/dataware-tools/app-data-browser-next:develop
+      - image: registry.gitlab.com/dataware-tools/app-data-browser-next:master
         name: app
         ports:
           - containerPort: 3000
