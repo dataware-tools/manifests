@@ -17,7 +17,7 @@ spec:
         require-auth0: disabled
     spec:
       containers:
-      - image: registry.gitlab.com/dataware-tools/app-launcher:v0.2.0.alpha
+      - image: registry.gitlab.com/dataware-tools/app-launcher:v0.2.0
         name: app
         ports:
           - containerPort: 3000
