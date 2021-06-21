@@ -17,6 +17,7 @@ spec:
         app: api-permission-manager
         version: v1
         require-auth0: enabled
+        require-auth0-user-admin: enabled
     spec:
       containers:
       - image: registry.gitlab.com/dataware-tools/api-permission-manager:master
