@@ -53,3 +53,18 @@ spec:
     - to:
         - operation:
             paths: ["*"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: require-auth0-user-admin
+spec:
+  action: DENY
+  selector:
+    matchLabels:
+      require-auth0-user-admin: enabled
+  rules:
+    - when:
+        - key: request.auth.claims[permissions]
+          notValues:
+            - "admin:user"
