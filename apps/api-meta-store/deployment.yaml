@@ -19,7 +19,7 @@ spec:
         require-auth0: enabled
     spec:
       containers:
-      - image: registry.gitlab.com/dataware-tools/api-meta-store:v0.3.2
+      - image: registry.gitlab.com/dataware-tools/api-meta-store:v0.4.3
         name: app
         ports:
           - containerPort: 8080
@@ -28,6 +28,8 @@ spec:
             value: "8080"
           - name: SECRET_KEY
             value: "api-meta-store"
+          - name: PERMISSION_MANAGER_SERVICE
+            value: "http://api-permission-manager:8080"
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
