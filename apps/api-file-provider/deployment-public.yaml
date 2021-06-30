@@ -22,7 +22,7 @@ spec:
         require-auth0: disabled
     spec:
       containers:
-      - image: registry.gitlab.com/dataware-tools/api-file-provider:v1.0
+      - image: registry.gitlab.com/dataware-tools/api-file-provider:v1.3
         name: app
         ports:
           - containerPort: 8080
@@ -33,6 +33,8 @@ spec:
             value: "api-file-provider"
           - name: JWT_LIFETIME    # Lifetime of token in seconds
             value: '60'
+          - name: META_STORE_SERVICE
+            value: "http://api-meta-store:8080"
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
