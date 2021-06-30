@@ -20,7 +20,7 @@ spec:
         require-auth0-user-admin: enabled
     spec:
       containers:
-      - image: registry.gitlab.com/dataware-tools/api-permission-manager:master
+      - image: registry.gitlab.com/dataware-tools/api-permission-manager:v0.1.0
         name: app
         ports:
           - containerPort: 8080
@@ -29,6 +29,11 @@ spec:
             value: "8080"
           - name: SECRET_KEY
             value: "api-permission-manager"
+          - name: DB_URL
+            value: "sqlite:///data/db.sqlite3"
+        volumeMounts:
+          - mountPath: "/data"
+            name: data-pv
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
@@ -39,6 +44,21 @@ spec:
           failureThreshold: 3
       imagePullSecrets:
         - name: regcred
+      volumes:
+        - name: data-pv
+          persistentVolumeClaim:
+            claimName: api-permission-manager-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: api-permission-manager-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 8Gi
 ---
 apiVersion: v1
 kind: Service
