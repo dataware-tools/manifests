@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: app-data-browser-next
+    require-auth0-client-configs: enabled
   name: app-data-browser-next
 spec:
   replicas: 1
@@ -17,7 +18,7 @@ spec:
         require-auth0: disabled
     spec:
       containers:
-      - image: registry.gitlab.com/dataware-tools/app-data-browser-next:master
+      - image: registry.gitlab.com/dataware-tools/app-data-browser-next:v0.0.2
         name: app
         ports:
           - containerPort: 3000

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    require-auth0-client-configs: enabled
+  name: "*"
+spec:
+  template:
+    spec:
+      containers:
+      - name: app
+        env:
+          - name: NEXT_PUBLIC_DATAWARE_TOOLS_AUTH_CONFIG_DOMAIN
+            value: "dataware-tools.us.auth0.com"
+          - name: NEXT_PUBLIC_DATAWARE_TOOLS_AUTH_CONFIG_CLIENT_ID
+            value: "ETb1RhJEbtXlFgWtaHzl5kPCkaYqhTVl"
+          - name: NEXT_PUBLIC_DATAWARE_TOOLS_AUTH_CONFIG_API_URL
+            value: "https://demo.dataware-tools.com/"
+          - name: NEXT_PUBLIC_DATAWARE_TOOLS_AUTH_MANAGE_PAGE
+            value: "https://manage.auth0.com/dashboard/us/dataware-tools/users"
+          - name: REACT_APP_DATAWARE_TOOLS_AUTH_CONFIG_DOMAIN
+            value: "dataware-tools.us.auth0.com"
+          - name: REACT_APP_DATAWARE_TOOLS_AUTH_CONFIG_CLIENT_ID
+            value: "ETb1RhJEbtXlFgWtaHzl5kPCkaYqhTVl"
+          - name: REACT_APP_DATAWARE_TOOLS_AUTH_CONFIG_API_URL
+            value: "https://demo.dataware-tools.com/"

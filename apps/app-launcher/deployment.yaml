@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: app-launcher
+    require-auth0-client-configs: enabled
   name: app-launcher
 spec:
   replicas: 1
@@ -17,7 +18,7 @@ spec:
         require-auth0: disabled
     spec:
       containers:
-      - image: registry.gitlab.com/dataware-tools/app-launcher:v0.2.0
+      - image: registry.gitlab.com/dataware-tools/app-launcher:v0.2.1
         name: app
         ports:
           - containerPort: 3000
