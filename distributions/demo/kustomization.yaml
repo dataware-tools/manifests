@@ -4,3 +4,9 @@ resources:
   - ../../apps
   - ../../common/networking
   - ../../common/security
+
+patches:
+  - path: ./auth0-client-configs.yaml
+    target:
+      kind: Deployment
+      labelSelector: require-auth0-client-configs
