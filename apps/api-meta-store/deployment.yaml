@@ -29,7 +29,7 @@ spec:
           - name: SECRET_KEY
             value: "api-meta-store"
           - name: PERMISSION_MANAGER_SERVICE
-            value: "https://api-permission-manager:8080"
+            value: "http://api-permission-manager:8080"
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
