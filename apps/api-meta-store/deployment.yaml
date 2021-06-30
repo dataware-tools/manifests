@@ -28,6 +28,8 @@ spec:
             value: "8080"
           - name: SECRET_KEY
             value: "api-meta-store"
+          - name: PERMISSION_MANAGER_SERVICE
+            value: "https://demo.dataware-tools.com/api/latest/permission_manager"
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
