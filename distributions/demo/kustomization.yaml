@@ -10,3 +10,13 @@ patches:
     target:
       kind: Deployment
       labelSelector: require-auth0-client-configs
+  - target:
+      kind: PersistentVolumeClaim
+    patch: |-
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: "*"
+      spec:
+        accessModes:
+          - ReadWriteOnce
