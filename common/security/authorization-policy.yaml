@@ -64,7 +64,10 @@ spec:
     matchLabels:
       require-auth0-user-admin: enabled
   rules:
-    - when:
+    - to:
+        - operation:
+            methods: [ "POST", "PUT", "PATCH", "DELETE" ]
+      when:
         - key: request.auth.claims[permissions]
           notValues:
             - "admin:user"
