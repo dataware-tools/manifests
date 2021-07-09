@@ -4,12 +4,21 @@ resources:
   - ../../apps
   - ../../common/networking
   - ../../common/security
+  - ./pvc.yaml
 
 patches:
   - path: ./auth0-client-configs.yaml
     target:
       kind: Deployment
       labelSelector: require-auth0-client-configs
+  - path: ./mounts.yaml
+    target:
+      kind: Deployment
+      labelSelector: require-data-mounts=enabled
+  - path: ./pydtk-v4.yaml
+    target:
+      kind: Deployment
+      labelSelector: require-pydtk-v4=enabled
   - target:
       kind: PersistentVolumeClaim
     patch: |-
