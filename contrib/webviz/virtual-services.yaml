@@ -1,0 +1,32 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: dataware-tools-webviz
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - dataware-tools-webviz-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /webviz/
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: webviz
+    - match:
+        - uri:
+            prefix: /dist
+        - uri:
+            prefix: /sockjs-node
+      route:
+        - destination:
+            host: webviz
+    - match:
+        - uri:
+            prefix: /test
+      route:
+        - destination:
+            host: ros-provider-test

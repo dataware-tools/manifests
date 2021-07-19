@@ -4,6 +4,7 @@ resources:
   - ../../apps
   - ../../common/networking
   - ../../common/security
+  - ../../contrib/webviz
   - ./pvc.yaml
 
 patches:
