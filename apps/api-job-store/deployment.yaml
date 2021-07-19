@@ -29,7 +29,7 @@ spec:
           - name: SECRET_KEY
             value: "api-job-store"
           - name: WEBVIZ_URL
-            value: 'https://webviz.io/app/'
+            value: 'https://webviz-demo.dataware-tools.com/app/'
           - name: WEBSOCKET_SCHEME
             value: 'wss'
           - name: WEBSOCKET_HOST
