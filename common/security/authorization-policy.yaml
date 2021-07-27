@@ -11,10 +11,10 @@ spec:
     - to:
         - operation:
             methods: ["GET"]
-#      when:
-#        - key: request.auth.audiences
-#          values:
-#            - https://demo.dataware-tools.com/
+      when:
+        - key: request.auth.audiences
+          values:
+            - https://demo.dataware-tools.com/
 #        - key: request.auth.claims[permissions]
 #          values:
 #            - "read:all"
@@ -32,10 +32,10 @@ spec:
     - to:
         - operation:
             methods: ["POST", "PUT", "PATCH", "DELETE"]
-#      when:
-#        - key: request.auth.audiences
-#          values:
-#            - https://demo.dataware-tools.com/
+      when:
+        - key: request.auth.audiences
+          values:
+            - https://demo.dataware-tools.com/
 #        - key: request.auth.claims[permissions]
 #          values:
 #            - "write:all"
@@ -68,6 +68,9 @@ spec:
         - operation:
             methods: [ "POST", "PUT", "PATCH", "DELETE" ]
       when:
+        - key: request.auth.audiences
+          values:
+            - https://demo.dataware-tools.com/
         - key: request.auth.claims[permissions]
           notValues:
             - "admin:user"
