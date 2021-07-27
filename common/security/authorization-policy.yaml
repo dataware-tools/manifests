@@ -69,7 +69,7 @@ spec:
             methods: [ "POST", "PUT", "PATCH", "DELETE" ]
       when:
         - key: request.auth.audiences
-          values:
+          notValues:
             - https://demo.dataware-tools.com/
         - key: request.auth.claims[permissions]
           notValues:
