@@ -19,25 +19,25 @@ spec:
         require-auth0: enabled
     spec:
       containers:
-      - image: registry.gitlab.com/dataware-tools/api-meta-store:v0.4.6
-        name: app
-        ports:
-          - containerPort: 8080
-        env:
-          - name: PORT
-            value: "8080"
-          - name: SECRET_KEY
-            value: "api-meta-store"
-          - name: PERMISSION_MANAGER_SERVICE
-            value: "http://api-permission-manager:8080"
-        imagePullPolicy: Always
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 10
-          failureThreshold: 3
+        - image: registry.gitlab.com/dataware-tools/api-meta-store:v0.4.7
+          name: app
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PORT
+              value: "8080"
+            - name: SECRET_KEY
+              value: "api-meta-store"
+            - name: PERMISSION_MANAGER_SERVICE
+              value: "http://api-permission-manager:8080"
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 3
       imagePullSecrets:
         - name: regcred
 ---
@@ -49,10 +49,10 @@ spec:
   selector:
     app: api-meta-store
   ports:
-  - name: http
-    protocol: TCP
-    port: 8080
-    targetPort: 8080
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
