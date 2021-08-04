@@ -71,3 +71,23 @@ spec:
         - key: request.auth.claims[permissions]
           notValues:
             - "admin:user"
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: require-auth0-job-admin
+spec:
+  action: DENY
+  selector:
+    matchLabels:
+      require-auth0-job-admin: enabled
+  rules:
+    - to:
+        - operation:
+            methods: [ "POST", "PUT", "PATCH", "DELETE" ]
+            paths:
+              - "/job_templates*"
+      when:
+        - key: request.auth.claims[permissions]
+          notValues:
+            - "admin:job"
