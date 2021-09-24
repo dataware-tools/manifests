@@ -18,7 +18,7 @@ spec:
         require-auth0: disabled
     spec:
       containers:
-      - image: registry.gitlab.com/dataware-tools/app-user-manager:v0.1.5
+      - image: registry.gitlab.com/dataware-tools/app-user-manager:v0.1.6
         name: app
         ports:
           - containerPort: 3000
