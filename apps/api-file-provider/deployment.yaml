@@ -19,7 +19,7 @@ spec:
         require-auth0: enabled
     spec:
       containers:
-      - image: registry.gitlab.com/dataware-tools/api-file-provider:v1.5
+      - image: registry.gitlab.com/dataware-tools/api-file-provider:v1.6.2
         name: app
         ports:
           - containerPort: 8080
