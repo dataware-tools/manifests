@@ -17,6 +17,28 @@ spec:
       route:
         - destination:
             host: api-file-provider-public
+      corsPolicy:
+        allowHeaders:
+          - Authorization
+          - Content-Type
+          - Content-Length
+          - Content-Range
+          - Accept-Ranges
+          - ETag
+          - Range
+        allowMethods:
+          - GET
+          - HEAD
+          - OPTIONS
+        allowOrigins:
+          - exact: 'https://webviz.io'
+          - exact: 'https://webviz.hdwlab.com'
+        exposeHeaders:
+          - Authorization
+          - Content-Type
+          - Content-Length
+          - Accept-Ranges
+          - ETag
     - name: api-file-provider
       match:
         - uri:
