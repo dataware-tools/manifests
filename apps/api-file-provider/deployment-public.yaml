@@ -22,7 +22,7 @@ spec:
         require-auth0: disabled
     spec:
       containers:
-      - image: registry.gitlab.com/dataware-tools/api-file-provider:v1.6.2
+      - image: registry.gitlab.com/dataware-tools/api-file-provider:v1.7.0
         name: app
         ports:
           - containerPort: 8080
