@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: api-job-store
-    require-db-url: enabled
+    require-pydtk-v4: enabled
   name: api-job-store
 spec:
   replicas: 1
