@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: api-job-store
-    require-db-url: enabled
+    require-pydtk-v4: enabled
   name: api-job-store
 spec:
   replicas: 1
@@ -20,7 +20,7 @@ spec:
         require-auth0-job-admin: enabled
     spec:
       containers:
-      - image: registry.gitlab.com/dataware-tools/api-job-store:v1.1
+      - image: registry.gitlab.com/dataware-tools/api-job-store:v1.4.0
         name: app
         ports:
           - containerPort: 8080
