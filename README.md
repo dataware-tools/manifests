@@ -19,3 +19,11 @@ You can deploy an example version of Dataware-tools using files under `distribut
 kustomize build distributions/demo | kubectl apply -f-
 
 ```
+
+
+## Developers' guide
+You can find which component to update with the following command:  
+```bash
+$ ./utils/list_update_candidates.sh
+
+```
