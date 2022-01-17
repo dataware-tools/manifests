@@ -18,7 +18,7 @@ api-file-provider
 api-meta-store
 api-permission-manager
 app-data-browser-next
-app-launcher
+app-launcher-next
 app-user-manager
 EOF
 
