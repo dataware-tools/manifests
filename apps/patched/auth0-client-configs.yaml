@@ -13,7 +13,7 @@ spec:
           - name: DATAWARE_TOOLS_AUTH_CONFIG_DOMAIN
             value: $(dataware-tools-apps-auth0-domain)
           - name: DATAWARE_TOOLS_AUTH_CONFIG_CLIENT_ID
-            value: $(dataware-tools-apps-auth0-client-id)
+            value: $(dataware-tools-apps-auth0-app-client-id)
           - name: DATAWARE_TOOLS_AUTH_CONFIG_API_URL
             value: $(dataware-tools-apps-auth0-api-url)
           - name: DATAWARE_TOOLS_AUTH_MANAGE_PAGE

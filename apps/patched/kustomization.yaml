@@ -42,13 +42,13 @@ vars:
       name: dataware-tools-apps
     fieldref:
       fieldpath: data.AUTH0_DOMAIN
-  - name: dataware-tools-apps-auth0-client-id
+  - name: dataware-tools-apps-auth0-app-client-id
     objref:
       apiVersion: v1
       kind: ConfigMap
       name: dataware-tools-apps
     fieldref:
-      fieldpath: data.AUTH0_CLIENT_ID
+      fieldpath: data.AUTH0_APP_CLIENT_ID
   - name: dataware-tools-apps-auth0-api-url
     objref:
       apiVersion: v1
