@@ -4,6 +4,7 @@ metadata:
   labels:
     app: api-job-store
     require-pydtk-v4: enabled
+    require-webviz-config: enabled
   name: api-job-store
 spec:
   replicas: 1

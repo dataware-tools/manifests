@@ -16,6 +16,10 @@ patches:
     target:
       kind: Deployment
       labelSelector: require-pydtk-v4=enabled
+  - path: ./webviz-config.yaml
+    target:
+      kind: Deployment
+      labelSelector: require-webviz-config=enabled
 
 secretGenerator:
   - name: dataware-tools-apps
@@ -87,3 +91,17 @@ vars:
       name: dataware-tools-apps
     fieldref:
       fieldpath: data.PYDTK_META_DB_DATABASE
+  - name: dataware-tools-apps-webviz-app-url
+    objref:
+      apiVersion: v1
+      kind: ConfigMap
+      name: dataware-tools-apps
+    fieldref:
+      fieldpath: data.WEBVIZ_APP_URL
+  - name: dataware-tools-apps-webviz-websocket-host
+    objref:
+      apiVersion: v1
+      kind: ConfigMap
+      name: dataware-tools-apps
+    fieldref:
+      fieldpath: data.WEBVIZ_WEBSOCKET_HOST
