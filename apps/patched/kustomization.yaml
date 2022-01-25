@@ -49,13 +49,6 @@ vars:
       name: dataware-tools-apps
     fieldref:
       fieldpath: data.AUTH0_CLIENT_ID
-  - name: dataware-tools-apps-auth0-secret
-    objref:
-      apiVersion: v1
-      kind: Secret
-      name: dataware-tools-apps
-    fieldref:
-      fieldpath: data.AUTH0_CLIENT_SECRET
   - name: dataware-tools-apps-auth0-api-url
     objref:
       apiVersion: v1
@@ -91,13 +84,6 @@ vars:
       name: dataware-tools-apps
     fieldref:
       fieldpath: data.PYDTK_META_DB_USERNAME
-  - name: dataware-tools-apps-pydtk-meta-db-password
-    objref:
-      apiVersion: v1
-      kind: Secret
-      name: dataware-tools-apps
-    fieldref:
-      fieldpath: data.PYDTK_META_DB_PASSWORD
   - name: dataware-tools-apps-pydtk-meta-db-database
     objref:
       apiVersion: v1

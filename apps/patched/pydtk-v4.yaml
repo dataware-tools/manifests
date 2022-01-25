@@ -17,6 +17,9 @@ spec:
           - name: PYDTK_META_DB_USERNAME
             value: $(dataware-tools-apps-pydtk-meta-db-username)
           - name: PYDTK_META_DB_PASSWORD
-            value: $(dataware-tools-apps-pydtk-meta-db-password)
+            valueFrom:
+              secretKeyRef:
+                name: dataware-tools-apps
+                key: PYDTK_META_DB_PASSWORD
           - name: PYDTK_META_DB_DATABASE
             value: $(dataware-tools-apps-pydtk-meta-db-database)
