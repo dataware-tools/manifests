@@ -15,4 +15,4 @@ spec:
         serverCertificate: /etc/istio/ingressgateway-certs/tls.crt
         privateKey: /etc/istio/ingressgateway-certs/tls.key
       hosts:
-        - webviz-demo.dataware-tools.com
+        - $(dataware-tools-contrib-webviz-gateway-host)

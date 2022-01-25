@@ -11,12 +11,12 @@ spec:
       - name: app
         env:
           - name: PYDTK_META_DB_ENGINE
-            value: mongodb
+            value: $(dataware-tools-apps-pydtk-meta-db-engine)
           - name: PYDTK_META_DB_HOST
-            value: mongodb:27017
+            value: $(dataware-tools-apps-pydtk-meta-db-host)
           - name: PYDTK_META_DB_USERNAME
-            value: demo
+            value: $(dataware-tools-apps-pydtk-meta-db-username)
           - name: PYDTK_META_DB_PASSWORD
-            value: demo
+            value: $(dataware-tools-apps-pydtk-meta-db-password)
           - name: PYDTK_META_DB_DATABASE
-            value: demo
+            value: $(dataware-tools-apps-pydtk-meta-db-database)

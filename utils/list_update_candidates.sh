@@ -26,7 +26,7 @@ while read component
 do
   [[ ! -n "${component}" ]] && continue
 
-  image=$(cat ${SCRIPT_DIR}/../apps/${component}/deployment.yaml | yq read - 'spec.template.spec.containers[0].image')
+  image=$(cat ${SCRIPT_DIR}/../apps/base/${component}/deployment.yaml | yq read - 'spec.template.spec.containers[0].image')
   current_tag=${image##*:}
   latest_tag=$(curl -s https://api.github.com/repos/dataware-tools/${component}/releases/latest | jq -r '.tag_name')
 

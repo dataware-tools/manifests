@@ -7,9 +7,9 @@ spec:
     matchLabels:
       require-auth0: enabled
   jwtRules:
-    - issuer: https://dataware-tools.us.auth0.com/
-      jwksUri: https://dataware-tools.us.auth0.com/.well-known/jwks.json
+    - issuer: $(dataware-tools-common-security-jwt-issuer)
+      jwksUri: $(dataware-tools-common-security-jwt-jwks-uri)
       audiences:
-        - https://demo.dataware-tools.com/
+        - $(dataware-tools-common-security-jwt-audience)
       forwardOriginalToken: true
       outputPayloadToHeader: jwt-payload

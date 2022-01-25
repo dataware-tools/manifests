@@ -1,0 +1,9 @@
+varReference:
+  - path: spec/jwtRules[]/issuer
+    kind: RequestAuthentication
+  - path: spec/jwtRules[]/jwksUri
+    kind: RequestAuthentication
+  - path: spec/jwtRules[]/audiences[]
+    kind: RequestAuthentication
+  - path: spec/rules[]/when[]/values
+    kind: AuthorizationPolicy

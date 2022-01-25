@@ -5,28 +5,33 @@ resources:
   - ../../common/networking
   - ../../common/security
   - ../../contrib/webviz
-  - ./pvc.yaml
 
 patches:
-  - path: ./auth0-client-configs.yaml
+  - path: ./pvc.yaml
     target:
-      kind: Deployment
-      labelSelector: require-auth0-client-configs
-  - path: ./mounts.yaml
-    target:
-      kind: Deployment
-      labelSelector: require-data-mounts=enabled
-  - path: ./pydtk-v4.yaml
-    target:
-      kind: Deployment
-      labelSelector: require-pydtk-v4=enabled
-  - target:
       kind: PersistentVolumeClaim
-    patch: |-
-      apiVersion: v1
-      kind: PersistentVolumeClaim
-      metadata:
-        name: "*"
-      spec:
-        accessModes:
-          - ReadWriteOnce
+      name: dataware-tools-uploaded-data
+
+secretGenerator:
+  - name: dataware-tools-apps
+    behavior: replace
+    envs:
+      - envs/apps_secrets.env
+
+configMapGenerator:
+  - name: dataware-tools-apps
+    behavior: replace
+    envs:
+      - envs/apps_configs.env
+  - name: dataware-tools-common-networking
+    behavior: replace
+    envs:
+      - envs/networking.env
+  - name: dataware-tools-common-security
+    behavior: replace
+    envs:
+      - envs/security.env
+  - name: dataware-tools-contrib-webviz
+    behavior: replace
+    envs:
+      - envs/webviz.env
