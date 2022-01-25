@@ -5,12 +5,9 @@ resources:
   - ../../common/networking
   - ../../common/security
   - ../../contrib/webviz
+  - ./pvc.yaml
 
 patches:
-  - path: ./pvc.yaml
-    target:
-      kind: PersistentVolumeClaim
-      name: dataware-tools-uploaded-data
   - path: ./mounts.yaml
     target:
       kind: Deployment
