@@ -10,11 +10,11 @@ spec:
   rules:
     - to:
         - operation:
-            methods: ["GET"]
+            methods: [ "GET" ]
       when:
         - key: request.auth.audiences
           values:
-            - https://demo.dataware-tools.com/
+            - $(dataware-tools-common-security-jwt-audience)
 #        - key: request.auth.claims[permissions]
 #          values:
 #            - "read:all"
@@ -31,11 +31,11 @@ spec:
   rules:
     - to:
         - operation:
-            methods: ["POST", "PUT", "PATCH", "DELETE"]
+            methods: [ "POST", "PUT", "PATCH", "DELETE" ]
       when:
         - key: request.auth.audiences
           values:
-            - https://demo.dataware-tools.com/
+            - $(dataware-tools-common-security-jwt-audience)
 #        - key: request.auth.claims[permissions]
 #          values:
 #            - "write:all"
@@ -52,7 +52,7 @@ spec:
   rules:
     - to:
         - operation:
-            paths: ["*"]
+            paths: [ "*" ]
 ---
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy

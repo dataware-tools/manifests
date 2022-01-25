@@ -2,25 +2,26 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: api-permission-manager
-    require-auth0-client-secret: enabled
-  name: api-permission-manager
+    app: api-job-store
+    require-pydtk-v4: enabled
+    require-webviz-config: enabled
+  name: api-job-store
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: api-permission-manager
+      app: api-job-store
   strategy: {}
   template:
     metadata:
       labels:
-        app: api-permission-manager
+        app: api-job-store
         version: v1
         require-auth0: enabled
-        require-auth0-user-admin: enabled
+        require-auth0-job-admin: enabled
     spec:
       containers:
-      - image: registry.gitlab.com/dataware-tools/api-permission-manager:v0.2.2
+      - image: registry.gitlab.com/dataware-tools/api-job-store:v1.4.0
         name: app
         ports:
           - containerPort: 8080
@@ -28,12 +29,15 @@ spec:
           - name: PORT
             value: "8080"
           - name: SECRET_KEY
-            value: "api-permission-manager"
-          - name: DB_URL
-            value: "sqlite:///data/db.sqlite3"
-        volumeMounts:
-          - mountPath: "/data"
-            name: data-pv
+            value: "api-job-store"
+          - name: WEBVIZ_URL
+            value: 'https://webviz-demo.dataware-tools.com/webviz/app/'
+          - name: WEBSOCKET_SCHEME
+            value: 'wss'
+          - name: WEBSOCKET_HOST
+            value: 'demo.dataware-tools.com'
+          - name: WEBSOCKET_PORT
+            value: '80'   # NOTE: Actual port is 443, but rosbridge causes an error with the actual value
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
@@ -44,29 +48,14 @@ spec:
           failureThreshold: 3
       imagePullSecrets:
         - name: regcred
-      volumes:
-        - name: data-pv
-          persistentVolumeClaim:
-            claimName: api-permission-manager-pvc
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: api-permission-manager-pvc
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 8Gi
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: api-permission-manager
+  name: api-job-store
 spec:
   selector:
-    app: api-permission-manager
+    app: api-job-store
   ports:
   - name: http
     protocol: TCP
@@ -76,19 +65,22 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: dataware-tools-api-permission-manager
+  name: dataware-tools-api-job-store
 spec:
   hosts:
     - "*"
   gateways:
     - dataware-tools-gateway
   http:
-    - name: api-permission-manager
+    #
+    # APIs
+    #
+    - name: api-job-store
       match:
         - uri:
-            prefix: /api/latest/permission_manager/
+            prefix: /api/latest/job_store/
       rewrite:
         uri: /
       route:
         - destination:
-            host: api-permission-manager
+            host: api-job-store

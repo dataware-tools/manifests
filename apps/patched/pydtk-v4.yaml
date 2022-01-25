@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    require-pydtk-v4: enabled
+  name: "*"
+spec:
+  template:
+    spec:
+      containers:
+      - name: app
+        env:
+          - name: PYDTK_META_DB_ENGINE
+            value: $(dataware-tools-apps-pydtk-meta-db-engine)
+          - name: PYDTK_META_DB_HOST
+            value: $(dataware-tools-apps-pydtk-meta-db-host)
+          - name: PYDTK_META_DB_USERNAME
+            value: $(dataware-tools-apps-pydtk-meta-db-username)
+          - name: PYDTK_META_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: dataware-tools-apps
+                key: PYDTK_META_DB_PASSWORD
+          - name: PYDTK_META_DB_DATABASE
+            value: $(dataware-tools-apps-pydtk-meta-db-database)

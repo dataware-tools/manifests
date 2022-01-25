@@ -4,7 +4,7 @@ metadata:
   name: dataware-tools
 spec:
   hosts:
-    - "*"
+    - $(dataware-tools-common-networking-gateway-host)
   gateways:
     - dataware-tools-gateway
   http:

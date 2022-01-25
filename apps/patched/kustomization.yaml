@@ -1,0 +1,107 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../base
+
+patches:
+  - path: ./auth0-client-configs.yaml
+    target:
+      kind: Deployment
+      labelSelector: require-auth0-client-configs=enabled
+  - path: ./auth0-client-secret.yaml
+    target:
+      kind: Deployment
+      labelSelector: require-auth0-client-secret=enabled
+  - path: ./pydtk-v4.yaml
+    target:
+      kind: Deployment
+      labelSelector: require-pydtk-v4=enabled
+  - path: ./webviz-config.yaml
+    target:
+      kind: Deployment
+      labelSelector: require-webviz-config=enabled
+
+secretGenerator:
+  - name: dataware-tools-apps
+    envs:
+      - secrets.env
+
+configMapGenerator:
+  - name: dataware-tools-apps
+    envs:
+      - configs.env
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+vars:
+  - name: dataware-tools-apps-auth0-domain
+    objref:
+      apiVersion: v1
+      kind: ConfigMap
+      name: dataware-tools-apps
+    fieldref:
+      fieldpath: data.AUTH0_DOMAIN
+  - name: dataware-tools-apps-auth0-app-client-id
+    objref:
+      apiVersion: v1
+      kind: ConfigMap
+      name: dataware-tools-apps
+    fieldref:
+      fieldpath: data.AUTH0_APP_CLIENT_ID
+  - name: dataware-tools-apps-auth0-api-url
+    objref:
+      apiVersion: v1
+      kind: ConfigMap
+      name: dataware-tools-apps
+    fieldref:
+      fieldpath: data.AUTH0_API_URL
+  - name: dataware-tools-apps-auth0-manage-page
+    objref:
+      apiVersion: v1
+      kind: ConfigMap
+      name: dataware-tools-apps
+    fieldref:
+      fieldpath: data.AUTH0_MANAGE_PAGE
+  - name: dataware-tools-apps-pydtk-meta-db-engine
+    objref:
+      apiVersion: v1
+      kind: ConfigMap
+      name: dataware-tools-apps
+    fieldref:
+      fieldpath: data.PYDTK_META_DB_ENGINE
+  - name: dataware-tools-apps-pydtk-meta-db-host
+    objref:
+      apiVersion: v1
+      kind: ConfigMap
+      name: dataware-tools-apps
+    fieldref:
+      fieldpath: data.PYDTK_META_DB_HOST
+  - name: dataware-tools-apps-pydtk-meta-db-username
+    objref:
+      apiVersion: v1
+      kind: ConfigMap
+      name: dataware-tools-apps
+    fieldref:
+      fieldpath: data.PYDTK_META_DB_USERNAME
+  - name: dataware-tools-apps-pydtk-meta-db-database
+    objref:
+      apiVersion: v1
+      kind: ConfigMap
+      name: dataware-tools-apps
+    fieldref:
+      fieldpath: data.PYDTK_META_DB_DATABASE
+  - name: dataware-tools-apps-webviz-app-url
+    objref:
+      apiVersion: v1
+      kind: ConfigMap
+      name: dataware-tools-apps
+    fieldref:
+      fieldpath: data.WEBVIZ_APP_URL
+  - name: dataware-tools-apps-webviz-websocket-host
+    objref:
+      apiVersion: v1
+      kind: ConfigMap
+      name: dataware-tools-apps
+    fieldref:
+      fieldpath: data.WEBVIZ_WEBSOCKET_HOST

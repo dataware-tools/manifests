@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    require-auth0-client-configs: enabled
+  name: "*"
+spec:
+  template:
+    spec:
+      containers:
+      - name: app
+        env:
+          - name: DATAWARE_TOOLS_AUTH_CONFIG_DOMAIN
+            value: $(dataware-tools-apps-auth0-domain)
+          - name: DATAWARE_TOOLS_AUTH_CONFIG_CLIENT_ID
+            value: $(dataware-tools-apps-auth0-app-client-id)
+          - name: DATAWARE_TOOLS_AUTH_CONFIG_API_URL
+            value: $(dataware-tools-apps-auth0-api-url)
+          - name: DATAWARE_TOOLS_AUTH_MANAGE_PAGE
+            value: $(dataware-tools-apps-auth0-manage-page)

@@ -3,3 +3,37 @@ kind: Kustomization
 resources:
   - authorization-policy.yaml
   - request-authentication.yaml
+
+configurations:
+  - ./varreference.yaml
+
+configMapGenerator:
+  - name: dataware-tools-common-security
+    envs:
+      - security.env
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+vars:
+  - name: dataware-tools-common-security-jwt-issuer
+    objref:
+      apiVersion: v1
+      kind: ConfigMap
+      name: dataware-tools-common-security
+    fieldref:
+      fieldpath: data.ISSUER
+  - name: dataware-tools-common-security-jwt-jwks-uri
+    objref:
+      apiVersion: v1
+      kind: ConfigMap
+      name: dataware-tools-common-security
+    fieldref:
+      fieldpath: data.JWKS_URI
+  - name: dataware-tools-common-security-jwt-audience
+    objref:
+      apiVersion: v1
+      kind: ConfigMap
+      name: dataware-tools-common-security
+    fieldref:
+      fieldpath: data.AUDIENCE

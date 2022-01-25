@@ -4,3 +4,23 @@ resources:
   - ./deployment.yaml
   - ./gateway.yaml
   - ./virtual-services.yaml
+
+configurations:
+  - ./varreference.yaml
+
+configMapGenerator:
+  - name: dataware-tools-contrib-webviz
+    envs:
+      - webviz.env
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+vars:
+  - name: dataware-tools-contrib-webviz-gateway-host
+    objref:
+      apiVersion: v1
+      kind: ConfigMap
+      name: dataware-tools-contrib-webviz
+    fieldref:
+      fieldpath: data.WEBVIZ_GATEWAY_HOST

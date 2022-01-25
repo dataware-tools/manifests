@@ -3,3 +3,23 @@ kind: Kustomization
 resources:
   - virtual-services.yaml
   - gateways.yaml
+
+configurations:
+  - ./varreference.yaml
+
+configMapGenerator:
+  - name: dataware-tools-common-networking
+    envs:
+      - networking.env
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+vars:
+  - name: dataware-tools-common-networking-gateway-host
+    objref:
+      apiVersion: v1
+      kind: ConfigMap
+      name: dataware-tools-common-networking
+    fieldref:
+      fieldpath: data.DATAWARE_TOOLS_GATEWAY_HOST

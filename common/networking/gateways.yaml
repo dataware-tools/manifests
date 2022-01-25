@@ -11,7 +11,7 @@ spec:
         name: dataware-tools-gateway-http
         protocol: HTTP
       hosts:
-        - "*"
+        - $(dataware-tools-common-networking-gateway-host)
     - port:
         number: 443
         name: dataware-tools-gateway-https
@@ -21,4 +21,4 @@ spec:
         serverCertificate: /etc/istio/ingressgateway-certs/tls.crt
         privateKey: /etc/istio/ingressgateway-certs/tls.key
       hosts:
-        - "*"
+        - $(dataware-tools-common-networking-gateway-host)
