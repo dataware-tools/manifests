@@ -11,6 +11,10 @@ patches:
     target:
       kind: PersistentVolumeClaim
       name: dataware-tools-uploaded-data
+  - path: ./mounts.yaml
+    target:
+      kind: Deployment
+      labelSelector: require-data-mounts=enabled
 
 secretGenerator:
   - name: dataware-tools-apps

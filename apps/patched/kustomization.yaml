@@ -16,10 +16,6 @@ patches:
     target:
       kind: Deployment
       labelSelector: require-pydtk-v4=enabled
-  - path: ./mounts.yaml
-    target:
-      kind: Deployment
-      labelSelector: require-data-mounts=enabled
 
 secretGenerator:
   - name: dataware-tools-apps
