@@ -4,7 +4,6 @@ resources:
   - ../../apps
   - ../../common/networking
   - ../../common/security
-  - ../../contrib/webviz
   - ./pvc.yaml
 
 patches:
@@ -32,7 +31,3 @@ configMapGenerator:
     behavior: replace
     envs:
       - envs/security.env
-  - name: dataware-tools-contrib-webviz
-    behavior: replace
-    envs:
-      - envs/webviz.env
