@@ -21,7 +21,7 @@ spec:
         require-auth0-job-admin: enabled
     spec:
       containers:
-      - image: registry.gitlab.com/dataware-tools/api-job-store:v1.5.0
+      - image: registry.gitlab.com/dataware-tools/api-job-store:v1.5.1
         name: app
         ports:
           - containerPort: 8080
