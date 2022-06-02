@@ -1,3 +1,0 @@
-varReference:
-  - path: spec/servers[]/hosts[]
-    kind: Gateway

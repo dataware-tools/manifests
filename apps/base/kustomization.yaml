@@ -8,3 +8,4 @@ resources:
   - ./app-data-browser-next
   - ./app-user-manager
   - ./app-launcher-next
+  - ./app-scene-viewer
