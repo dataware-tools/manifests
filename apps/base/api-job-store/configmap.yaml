@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-job-store-assets
+data:
+  pod_template.yaml: |
+    #
+    # A Template of Pods
+    #
+    # NOTE (d-hayashi): Only the following items are inherited to the jobs created by api-job-store.
+    #   - spec.volumes
+    #   - spec.containers[0].volumeMounts
+    #
+
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: template
+    spec:
+      containers:
+        - name: template
+          image: dummy
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          hostPath:
+            path: /tmp/data
+      imagePullSecrets:
+        - name: regcred

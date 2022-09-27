@@ -21,7 +21,7 @@ spec:
         require-auth0-job-admin: enabled
     spec:
       containers:
-      - image: registry.gitlab.com/dataware-tools/api-job-store:v1.5.1
+      - image: registry.gitlab.com/dataware-tools/api-job-store:v2.0.0
         name: app
         ports:
           - containerPort: 8080
@@ -38,6 +38,9 @@ spec:
             value: 'demo.dataware-tools.com'
           - name: WEBSOCKET_PORT
             value: '80'   # NOTE: Actual port is 443, but rosbridge causes an error with the actual value
+        volumeMounts:
+          - name: assets
+            mountPath: /opt/app/api/assets
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
@@ -48,6 +51,10 @@ spec:
           failureThreshold: 3
       imagePullSecrets:
         - name: regcred
+      volumes:
+        - name: assets
+          configMap:
+            name: api-job-store-assets
 ---
 apiVersion: v1
 kind: Service
